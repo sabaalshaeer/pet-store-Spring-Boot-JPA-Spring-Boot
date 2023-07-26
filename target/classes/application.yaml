@@ -1,0 +1,24 @@
+spring:
+   datasource:
+      username: pet_store
+      password: pet_store
+      url: jdbc:mysql://localhost:3306/pet_store
+      
+   jpa:
+      hibernate:
+         ddl-auto: create
+      show-sql: true
+      defer-datasource-initialization: true
+   
+   sql:
+      init:
+         mode: always
+         
+   #This a configration file allows the application to login to the database and gives instructions to JPA. 
+    #spring.datasource: It defines the database connection details, such as username, password, and the database URL
+      #spring.sql:spring data instructions
+       #setting ddl-auto defines how Hibernate will create or update the database tables. The value create will create the tables if they do not exist when the application starts
+        # set show-sql to true, this property enables the display of SQL statements executed by Hibernate in the application's logs.
+          # set defer-datasource-initialization defines whether or not the DataSource bean will be initialized when the application starts.set it to true, that mean ,dont send the data source until the first JDBC query is executed.
+             #spring.sql.init.mode: defines when the SQL scripts in the src/main/resources/sql directory will be executed. The value always means that the scripts will be executed on every application startup.
+        
