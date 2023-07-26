@@ -31,21 +31,21 @@ public class PetStore {
 	private String petStorePhone;
 
 	// many-to-many relationship with Customer
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@ManyToMany(cascade = CascadeType.PERSIST) // Using Persist instead of All because I don't want to delete customers
 												// just because they shop at a different pet store
 	@JoinTable(name = "pet_store_customer", joinColumns = @JoinColumn(name = "pet_store_id"), inverseJoinColumns = @JoinColumn(name = "customer_id"))
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	private Set<Customer> customers = new HashSet<>();
 
 	// one-to-many relationship with Employee
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
 	@OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true) // Using All with CascadeType
 																						// because I want to delete
 																						// employees if they left the
 																						// pet store and set orphan to
 																						// true
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	private Set<Employee> employees = new HashSet<>();
 
 	/*

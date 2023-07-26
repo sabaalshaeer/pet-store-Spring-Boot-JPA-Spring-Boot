@@ -23,7 +23,7 @@ public class Employee {
 	private Long employeeId;
 	private String employeeFirstName;
 	private String employeeLastName;
-	private Integer employeePhone;
+	private String employeePhone;
 	private String employeeJobTitle;
 
 	// many-to-one relationShip with PetStore
