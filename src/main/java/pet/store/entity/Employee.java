@@ -26,13 +26,14 @@ public class Employee {
 	private String employeePhone;
 	private String employeeJobTitle;
 
+	//FK refers to PetStpre table
 	// many-to-one relationShip with PetStore
 	@EqualsAndHashCode.Exclude // these annotations will exclude these specific fields from generating the
 								// equals(), hashCode(), and toString() methods that Lombok automatically
 								// generates for a class.
 	@ToString.Exclude
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pet_store_id")
+	@JoinColumn(name = "pet_store_id", nullable = false)
 	private PetStore petStore;
 
 	/*

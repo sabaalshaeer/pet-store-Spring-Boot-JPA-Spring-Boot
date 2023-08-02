@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,15 +14,16 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-@Entity
-@Data
+@Entity //tell Spring this class is going to be a table
+@Data  //that is going to create getter and setter
 public class Customer {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id //going to tell spring that is our primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY)// auto-increment
 	private Long customerId;
 	private String customerFirstName;
 	private String customerLastName;
+	@Column(unique = true)
 	private String customerEmail;
 	
 	//many-to-many relationship

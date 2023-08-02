@@ -38,6 +38,7 @@ public class PetStore {
 	@ToString.Exclude
 	private Set<Customer> customers = new HashSet<>();
 
+	//FK specification
 	// one-to-many relationship with Employee
 	@OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true) // Using All with CascadeType
 																						// because I want to delete
