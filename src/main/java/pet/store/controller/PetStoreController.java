@@ -21,7 +21,7 @@ import pet.store.service.PetStoreService;
 				// if needed. The @RestController annotation also tells Spring to take care of
 				// mapping the requests to the appropriate methods in this class and returning
 				// JSON responses.
-@RequestMapping("/pet_store") // this annotation tells Spring that the URI for every HTTP request that is
+@RequestMapping("/") // this annotation tells Spring that the URI for every HTTP request that is
 								// mapped to a method in this controller class must start with "/pet_store".
 @Slf4j // This is a Lombok annotation that creates an SLF4J logger. This logger is
 		// named "log" and can be used in the class to print log messages easily.
@@ -38,7 +38,7 @@ public class PetStoreController {
 	 * method in the service class (savePetStore) that will insert or modify the pet
 	 * store data.
 	 */
-	@PostMapping
+	@PostMapping("/pet_store")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public PetStoreData insertPetStore(@RequestBody PetStoreData petStoreData) {
 		log.info("Create Pet Store {}", petStoreData);
@@ -46,7 +46,7 @@ public class PetStoreController {
 	}
 	
 	//modify one of the pet store objects 
-	@PutMapping("/{petStoreId}")
+	@PutMapping("/pet_store/{petStoreId}")
 	public PetStoreData updatePetStore(@PathVariable Long petStoreId,
 			@RequestBody PetStoreData petStoreData) {
 		//Set the pet store ID in the pet store data from the ID parameter.
