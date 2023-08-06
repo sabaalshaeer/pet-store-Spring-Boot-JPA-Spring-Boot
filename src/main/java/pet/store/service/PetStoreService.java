@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pet.store.controller.model.PetStoreData;
 import pet.store.dao.PetStoreDao;
@@ -19,6 +20,7 @@ public class PetStoreService {
 	@Autowired
 	private PetStoreDao petStoreDao;
 
+	@Transactional(readOnly = false)
 	public PetStoreData savePetStore(PetStoreData petStoreData) {
 		//check if the petStore info which pass in the method exists by checking the Id
 		Long petStoreId = petStoreData.getPetStoreId();
@@ -60,7 +62,6 @@ public class PetStoreService {
 	private PetStore findPetStoreById(Long petStoreId) {
 		return petStoreDao.findById(petStoreId).orElseThrow(() -> new NoSuchElementException("Pet Store with Id=" + petStoreId+ " is not exist."));
 	}
-	
-	
+
 
 }
