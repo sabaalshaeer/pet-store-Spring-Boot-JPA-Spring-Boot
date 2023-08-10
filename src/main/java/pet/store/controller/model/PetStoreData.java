@@ -93,7 +93,6 @@ public class PetStoreData {
 			employeeLastName = employee.getEmployeeLastName();
 			employeePhone = employee.getEmployeePhone();
 			employeeJobTitle = employee.getEmployeeJobTitle();
-			petStore = new PetStoreData(employee.getPetStore());
 			
 		}
 	}
