@@ -39,7 +39,7 @@ public class PetStore {
 	private Set<Customer> customers = new HashSet<>();
 
 	//FK specification
-	// one-to-many relationship with Employee
+	// one-to-many relationship with Employee(owning class)
 	@OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true) // Using All with CascadeType
 																						// because I want to delete
 																						// employees if they left the

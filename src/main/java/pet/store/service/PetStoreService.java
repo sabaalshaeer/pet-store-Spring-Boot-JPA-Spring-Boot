@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -125,7 +126,7 @@ public class PetStoreService {
 	public PetStoreCustomer saveCustomer(Long petStoreId, PetStoreCustomer petStoreCustomer) {
 	    PetStore petStore = findPetStoreById(petStoreId); //fetch the pet store object using the passing Id
 	    Long customerId = petStoreCustomer.getCustomerId();//fetch customerId 
-	    Customer customer = findOrCreateCustomer(petStoreId, customerId); // get customer object associate with that specific customerId Id and belong to that pet Store with that pet store Id
+	    Customer customer = findOrCreateCustomer(petStoreId, customerId, petStoreCustomer); // get customer object associate with that specific customerId Id and belong to that pet Store with that pet store Id
 
 	    copyCustomerFields(customer, petStoreCustomer); //set the fields from petStoreCustomer to the existing customer
 
@@ -151,12 +152,31 @@ public class PetStoreService {
 	}
 	
 	//retrieve an existing customer or to create a new one.
-	private Customer findOrCreateCustomer(Long petStoreId, Long customerId) {
+	private Customer findOrCreateCustomer(Long petStoreId, Long customerId, PetStoreCustomer petStoreCustomer) {
 	    if (customerId == null) {
-	        return new Customer();
+	    	 // If customerId is null, try to find an existing customer with the given email
+	        String customerEmail = petStoreCustomer.getCustomerEmail();//get email
+
+	        Optional<Customer> existingCustomer = customerDao.findByCustomerEmail(customerEmail);
+	        
+	        if (existingCustomer.isPresent()) {
+	        	System.out.println("Customer"+ existingCustomer+"is exsist");
+	            return existingCustomer.get(); // Return the existing customer
+	        } else {
+	            // no matching customer was found then Create a new customer  
+	            Customer newCustomer = new Customer();
+	            newCustomer.setCustomerEmail(customerEmail);//set the email
+	            return newCustomer;
+	        }
 	    } else {
+	        // If customerId which is provided is not null, find the customer by ID
 	        return findCustomerById(petStoreId, customerId);
 	    }
+	    
+//	        return new Customer();
+//	    } else {
+//	        return findCustomerById(petStoreId, customerId);
+//	    }
 	}
 
 	
@@ -199,7 +219,7 @@ public class PetStoreService {
 	}
 
 	
-
+	
 	
 	
 

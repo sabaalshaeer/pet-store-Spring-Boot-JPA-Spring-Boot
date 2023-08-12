@@ -62,6 +62,7 @@ public class PetStoreData {
 		
 		//constructor that takes a Customer Object
 		public PetStoreCustomer(Customer customer) {
+			//store fields from customer into the fields in pet store customer
 			customerId = customer.getCustomerId();
 			customerFirstName = customer.getCustomerFirstName();
 			customerLastName = customer.getCustomerLastName();

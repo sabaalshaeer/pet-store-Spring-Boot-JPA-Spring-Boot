@@ -27,7 +27,7 @@ public class Employee {
 	private String employeeJobTitle;
 
 	//FK refers to PetStpre table
-	// many-to-one relationShip with PetStore
+	// many-to-one relationShip with PetStore (owned class)
 	@EqualsAndHashCode.Exclude // these annotations will exclude these specific fields from generating the
 								// equals(), hashCode(), and toString() methods that Lombok automatically
 								// generates for a class.
